@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alishba Maqsood Alam | Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        :root {
+            
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc; /* For sections like experience, projects */
+            --bg-tertiary: #e2e8f0; /* For skill cards and similar elements */
+            --text-primary: #1f2937; /* Dark charcoal for main text */
+            --text-secondary: #6b7280; /* Medium gray for secondary text */
+            --accent-color: #2563eb; /* Vibrant blue for accents */
+        }
+
+        .dark-mode {
+            /* Dark Theme */
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #242646;
+            --bg-tertiary: #1f2038;
+            --text-primary: #e6edf3;
+            --text-secondary: #a4a9c6;
+            --accent-color: #00e0ff;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 20;
+        }
+
+        .card-custom {
+            background: var(--bg-primary);
+            border: 1px solid var(--bg-tertiary);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .card-custom {
+            background: var(--bg-tertiary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: none;
+        }
+
+        h2, h3 {
+            color: var(--text-primary);
+        }
+
+            h2:hover {
+                text-shadow: 0 0 10px var(--accent-color);
+                transition: text-shadow 0.3s ease;
+            }
+
+        .fixed-navbar {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 50;
+            padding: 1rem 1.5rem;
+            transition: background-color 0.3s ease;
+            border-bottom: 1px solid var(--bg-tertiary);
+        }
+
+        .dark-mode .fixed-navbar {
+            background-color: rgba(26, 26, 46, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 49;
+        }
+
+            .mobile-menu-overlay.open {
+                transform: translateX(0);
+            }
+
+            .mobile-menu-overlay a {
+                font-size: 1.5rem;
+                margin: 1rem 0;
+                color: var(--text-primary);
+                transition: color 0.3s ease;
+            }
+
+                .mobile-menu-overlay a:hover {
+                    color: var(--accent-color);
+                    text-shadow: 0 0 10px var(--accent-color);
+                }
+
+        .hamburger-icon.open .fa-bars {
+            display: none;
+        }
+
+        .hamburger-icon.open .fa-xmark {
+            display: inline-block;
+        }
+
+        .hamburger-icon .fa-xmark {
+            display: none;
+        }
+
+        .desktop-nav a {
+            position: relative;
+            color: var(--text-primary);
+        }
+
+            .desktop-nav a::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -5px;
+                left: 50%;
+                transform: translateX(-50%);
+                background-color: var(--accent-color);
+                transition: width 0.3s ease;
+            }
+
+            .desktop-nav a:hover::after {
+                width: 100%;
+            }
+
+        /* Re-mapping Tailwind classes to CSS variables */
+        .bg-gray-900 {
+            background-color: var(--bg-secondary);
+        }
+
+        .text-gray-100 {
+            color: var(--text-primary);
+        }
+
+        .text-gray-300 {
+            color: var(--text-secondary);
+        }
+
+        .text-gray-400 {
+            color: var(--text-secondary);
+        }
+
+        .text-gray-800 {
+            background-color: var(--bg-primary);
+        }
+
+        .dark-mode .text-gray-800 {
+            background-color: var(--bg-tertiary);
+        }
+
+        .bg-gradient-to-r {
+            background: linear-gradient(to right, var(--accent-color), var(--accent-color));
+        }
+
+        .hover\:shadow-cyan-500\/50:hover {
+            box-shadow: 0 0 10px 5px var(--accent-color);
+        }
+
+        .text-blue-400, .text-cyan-400 {
+            color: var(--accent-color);
+        }
+
+        .text-gray-500 {
+            color: var(--text-secondary);
+        }
+
+        /* Skill bar specific styling */
+        .skill-bar-container {
+            background-color: var(--bg-tertiary);
+            height: 0.5rem;
+            border-radius: 9999px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+        }
+
+        .skill-bar-fill {
+            background-color: var(--accent-color);
+            height: 100%;
+            border-radius: 9999px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Styles for the social icons in hero section */
+        .hero-social-icon {
+            background-color: #ffffff;
+            border: 1px solid var(--bg-tertiary);
+            color: var(--text-secondary);
+            transition: all 0.2s ease-in-out;
+        }
+
+            .hero-social-icon:hover {
+                border-color: var(--accent-color);
+                color: var(--accent-color);
+                box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+            }
+
+        .dark-mode .hero-social-icon {
+            background-color: var(--bg-tertiary);
+            border-color: var(--text-secondary);
+            color: var(--text-primary);
+        }
+
+        /* Scroll to explore styling */
+        .scroll-to-explore {
+            color: var(--text-secondary);
+        }
+
+        .scroll-to-explore-icon {
+            border: 1px solid var(--text-secondary);
+            color: var(--text-secondary);
+            background-color: transparent;
+        }
+
+            .scroll-to-explore-icon:hover {
+                border-color: var(--accent-color);
+                color: var(--accent-color);
+            }
+
+        .dark-mode .scroll-to-explore-icon {
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+            .dark-mode .scroll-to-explore-icon:hover {
+                border-color: var(--accent-color);
+                color: var(--accent-color);
+            }
+
+        /* New Contact Section Styling */
+        .contact-card {
+            background: var(--bg-tertiary);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .contact-card {
+            background: var(--bg-tertiary);
+            box-shadow: none;
+        }
+
+        .contact-icon-link {
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+            .contact-icon-link:hover {
+                transform: scale(1.2);
+            }
+
+        .contact-info a {
+            transition: color 0.3s ease;
+        }
+
+            .contact-info a:hover {
+                color: var(--accent-color);
+            }
+
+        /* New Education Section Styling for a Classy Look */
+        .education-section .education-item {
+            background: var(--bg-primary); /* Use primary background for the card */
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            border: 1px solid var(--bg-tertiary);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px; /* Spacing between elements within the card */
+        }
+
+        .dark-mode .education-section .education-item {
+            background: var(--bg-tertiary);
+            box-shadow: none;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .education-section .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .education-section .education-item:hover {
+            box-shadow: 0 6px 20px rgba(0, 224, 255, 0.1); /* Accent glow for dark mode */
+        }
+
+        .education-section .education-item .icon {
+            font-size: 2.5rem; /* Larger icons */
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+
+        .education-section .education-item h3 {
+            font-size: 1.6rem; /* Slightly larger heading */
+            font-weight: 700; /* Bolder */
+            color: var(--accent-color);
+            margin-top: 0;
+            margin-bottom: 5px;
+            text-align: center; /* Center align all text for a cleaner look */
+        }
+
+        .education-section .education-item .info-group {
+            border-top: 1px solid var(--bg-tertiary); /* Divider line */
+            padding-top: 15px;
+            margin-top: 15px;
+        }
+
+        .dark-mode .education-section .education-item .info-group {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .education-section .education-item p {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+            text-align: center; /* Center align all text for a cleaner look */
+        }
+
+            .education-section .education-item p.highlight {
+                font-weight: 600; /* Bold for important details */
+                color: var(--text-primary);
+            }
+
+        .certificate-card {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            background-color: var(--bg-primary);
+        }
+
+        .dark-mode .certificate-card {
+            background-color: var(--bg-tertiary);
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .certificate-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--bg-tertiary);
+            transition: border-color 0.3s ease;
+        }
+
+        .dark-mode .certificate-card img {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .certificate-card h3 {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .certificate-card p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .certificate-card a {
+            color: var(--accent-color);
+            font-weight: 500;
+            margin-top: 0.75rem;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body class="light-mode">
+    <nav class="fixed-navbar w-full top-0 left-0 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#hero" class="text-2xl font-bold text-primary hover:text-accent transition-colors">AM</a>
+
+            <div class="flex items-center space-x-4">
+                <button id="theme-toggle" class="text-primary text-2xl focus:outline-none p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-sun light-mode-icon"></i>
+                    <i class="fas fa-moon hidden dark-mode-icon"></i>
+                </button>
+                <button id="hamburger-menu" class="md:hidden text-primary focus:outline-none hamburger-icon p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                    <i class="fas fa-bars text-2xl"></i>
+                    <i class="fas fa-xmark text-2xl"></i>
+                </button>
+            </div>
+
+            <div class="hidden md:flex md:space-x-8 desktop-nav">
+                <a href="#summary" class="text-secondary hover:text-primary transition-colors">About</a>
+                <a href="#education" class="text-secondary hover:text-primary transition-colors">Education</a>
+                <a href="#experience" class="text-secondary hover:text-primary transition-colors">Experience</a>
+                <a href="#skills" class="text-secondary hover:text-primary transition-colors">Skills</a>
+                <a href="#projects" class="text-secondary hover:text-primary transition-colors">Projects</a>
+                <a href="#certs" class="text-secondary hover:text-primary transition-colors">Certifications</a>
+                <a href="#contact" class="text-secondary hover:text-primary transition-colors">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="mobile-menu" class="mobile-menu-overlay md:hidden">
+        <a href="#summary" class="text-primary hover:text-accent transition-colors">About</a>
+        <a href="#education" class="text-primary hover:text-accent transition-colors">Education</a>
+        <a href="#experience" class="text-primary hover:text-accent transition-colors">Experience</a>
+        <a href="#skills" class="text-primary hover:text-accent transition-colors">Skills</a>
+        <a href="#projects" class="text-primary hover:text-accent transition-colors">Projects</a>
+        <a href="#certs" class="text-primary hover:text-accent transition-colors">Certifications</a>
+        <a href="#contact" class="text-primary hover:text-accent transition-colors">Contact</a>
+    </div>
+
+    <section id="hero" class="h-screen flex items-center justify-center text-center relative overflow-hidden">
+        <div id="particles-js"></div>
+        <div class="hero-content">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-accent mb-4">Alishba Maqsood Alam</h1>
+            <p class="text-lg md:text-xl text-text-primary font-light mb-8 max-w-3xl mx-auto">
+                <span class="text-2xl font-semibold md:text-3xl">Software Engineering Student with expertise in Data Science & Machine Learning</span> <br>
+            </p>
+            <div class="flex justify-center space-x-6 mb-12">
+                <a href="https://drive.google.com/file/d/1WSwoaWC8MluwPXpuOGP-I2wcHb_8NLZn/view?usp=sharing" target="_blank" download="Alishba_Maqsood_Alam_Resume.pdf" class="w-12 h-12 flex items-center justify-center rounded-full hero-social-icon">
+                    <i class="fas fa-file-alt text-xl"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/alishba-maqsood-46861031a" target="_blank" class="w-12 h-12 flex items-center justify-center rounded-full hero-social-icon">
+                    <i class="fab fa-linkedin-in text-xl"></i>
+                </a>
+                <a href="mailto:alishbamaqsood75@gmail.com" class="w-12 h-12 flex items-center justify-center rounded-full hero-social-icon">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+            </div>
+            <div class="flex flex-col items-center mt-16">
+                <p class="text-sm text-secondary scroll-to-explore mb-2">Scroll to explore</p>
+                <a href="#summary" class="w-10 h-10 flex items-center justify-center rounded-full scroll-to-explore-icon animate-bounce">
+                    <i class="fas fa-arrow-down"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="summary" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent">Professional Summary</h2>
+            <div class="max-w-4xl mx-auto text-center leading-relaxed text-lg text-text-primary">
+                <p class="mb-4">
+                    Software Engineering student with hands-on experience in Data Science, Machine Learning, and Natural Language Processing.
+                </p>
+                <p class="mb-4">
+                    Skilled in developing workflow automation, using n8n, KNIME, and modern programming frameworks.
+                </p>
+                <p>
+                    Certified by IBM with proven expertise in applying DS/ML techniques to real-world problems.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-20 bg-secondary education-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent">Education</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="education-item">
+                    <i class="fas fa-graduation-cap icon"></i>
+                    <h3 class="text-xl font-semibold">Bachelor of Science in Software Engineering</h3>
+                    <div class="info-group">
+                        <p class="text-sm">Bahria University, Karachi Campus</p>
+                        <p class="text-sm highlight">September 2023 - September 2027</p>
+                        <p class="text-sm highlight">CGPA: 3.55/4.00</p>
+                        <p class="text-text-secondary mt-2">
+                            Currently pursuing a comprehensive software engineering program.
+                        </p>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <i class="fas fa-book-open icon"></i>
+                    <h3 class="text-xl font-semibold">HSC Pre-Engineering</h3>
+                    <div class="info-group">
+                        <p class="text-sm">St Joseph's College for Women</p>
+                        <p class="text-sm highlight">June 2020 - July 2022</p>
+                        <p class="text-sm highlight">Grade: A+</p>
+                        <p class="text-text-secondary mt-2">
+                            Completed Higher Secondary School studies with a strong focus on core technical subjects.
+                        </p>
+                    </div>
+                </div>
+                <div class="education-item">
+                    <i class="fas fa-school icon"></i>
+                    <h3 class="text-xl font-semibold">Matriculation</h3>
+                    <div class="info-group">
+                        <p class="text-sm">The Metropolitan Academy</p>
+                        <p class="text-sm highlight">July 2018 - May 2020</p>
+                        <p class="text-sm highlight">Grade: A+</p>
+                        <p class="text-text-secondary mt-2">
+                            Achieved a high academic standing, building a solid foundation for future studies.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-20 bg-primary">
+                <div class="card-custom p-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-text-primary">Graphic Design Intern</h3>
+                    <p class="text-text-secondary">Skill TechSol | July 2025 - Sep 2025</p>
+                    <ul class="list-disc list-inside mt-4 text-text-secondary">
+                        <li>Designed creative digital assets including banners, social posts, and UI mockups.</li>
+                        <li>Collaborated with cross-functional teams to align visual design with brand identity.</li>
+                    </ul>
+                </div>
+                <div class="card-custom p-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-shadow duration-300">
+                    <h3 class="text-xl font-semibold text-text-primary">UI/UX Design Intern</h3>
+                    <p class="text-text-secondary">Trust Nexus | June 2025 - Sep 2025</p>
+                    <ul class="list-disc list-inside mt-4 text-text-secondary">
+                        <li>Managed and grew brand presence across social media platforms.</li>
+                        <li>Developed responsive prototypes ensuring consistent cross-platform experiences.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent">Skills & Expertise</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-custom p-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-text-primary">Development & Programming</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-text-primary">Java, Python, C# Development <span class="text-sm float-right">90%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">ASP.NET Web Forms <span class="text-sm float-right">75%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Object-Oriented Programming (OOP) <span class="text-sm float-right">95%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Design Patterns & Software Architecture <span class="text-sm float-right">80%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Database Management (MS Access, SQL) <span class="text-sm float-right">85%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-custom p-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-text-primary">Data Science & ML</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-text-primary">Machine Learning <span class="text-sm float-right">90%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Deep Learning <span class="text-sm float-right">80%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Natural Language Processing (NLP) <span class="text-sm float-right">85%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">KNIME & n8n Automation <span class="text-sm float-right">95%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Data Analysis & Visualization <span class="text-sm float-right">90%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-custom p-8 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-shadow duration-300">
+                    <h3 class="text-xl font-bold mb-4 text-text-primary">Soft Skills & Tools</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <p class="text-text-primary">Problem-Solving <span class="text-sm float-right">95%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Team Collaboration <span class="text-sm float-right">90%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Git & GitHub <span class="text-sm float-right">85%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Microsoft Office Suite <span class="text-sm float-right">95%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 95%;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-text-primary">Time Management <span class="text-sm float-right">90%</span></p>
+                            <div class="skill-bar-container">
+                                <div class="skill-bar-fill" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent">Projects</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <a href="https://github.com/Alishba-coder-tech/Traffic-Intersection-Control" target="_blank" class="card-custom p-6 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-transform hover:scale-105 duration-300 flex flex-col items-center text-center">
+                    <i class="fas fa-traffic-light text-5xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-text-primary">Traffic Intersection Control</h3>
+                    <p class="text-text-secondary">An intelligent system designed to optimize traffic flow and reduce congestion.</p>
+                </a>
+                <a href="https://github.com/Alishba-coder-tech/Hospital-Management-System" target="_blank" class="card-custom p-6 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-transform hover:scale-105 duration-300 flex flex-col items-center text-center">
+                    <i class="fas fa-hospital text-5xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-text-primary">Hospital Management System</h3>
+                    <p class="text-text-secondary">A comprehensive system to manage patient records, appointments, and hospital operations.</p>
+                </a>
+                <a href="https://github.com/Alishba-coder-tech/n-queen-game" target="_blank" class="card-custom p-6 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-transform hover:scale-105 duration-300 flex flex-col items-center text-center">
+                    <i class="fas fa-chess-queen text-5xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-text-primary">N-Queen Game</h3>
+                    <p class="text-text-secondary">A classic problem-solving game with a user-friendly interface using backtracking algorithm.</p>
+                </a>
+                <a href="https://github.com/Alishba-coder-tech/Rpg-Game-Simulation" target="_blank" class="card-custom p-6 rounded-lg shadow-lg hover:shadow-cyan-500/50 transition-transform hover:scale-105 duration-300 flex flex-col items-center text-center">
+                    <i class="fas fa-gamepad text-5xl text-accent mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-2 text-text-primary">Rpg Game Simulation</h3>
+                    <p class="text-text-secondary">A role-playing game simulation developed with Java to explore object-oriented concepts.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="certs" class="py-20 bg-secondary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent">Certifications</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="certificate-card">
+                    <a href="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Data%20Science.png?raw=true" target="_blank">
+                        <img src="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Data%20Science.png?raw=true" alt="IBM Data Science Professional Certificate" class="w-full h-auto rounded-md shadow-md">
+                        <h3>IBM Data Science Professional Certificate</h3>
+                        <p>Issued by Coursera and IBM</p>
+                    </a>
+                </div>
+                <div class="certificate-card">
+                    <a href="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Alishba%20Maqsood%20-%20Intro%20to%20Machine%20Learning%20(1).png?raw=true" target="_blank">
+                        <img src="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Alishba%20Maqsood%20-%20Intro%20to%20Machine%20Learning%20(1).png?raw=true" alt="Introduction to Machine Learning Certificate" class="w-full h-auto rounded-md shadow-md">
+                        <h3>Introduction to Machine Learning</h3>
+                        <p>Issued by Kaggle</p>
+                    </a>
+                </div>
+                </a>
+            </div>
+            <div class="certificate-card">
+                <a href="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/n8n%20accomplishment%20certificate.pdf?raw=true" target="_blank">
+                    <img src="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/n8n%20accomplishment%20certificate.pdf?raw=true
+               " alt="Introduction to Workflow Automation with n8n" class="w-full h-auto rounded-md shadow-md">
+                    <h3>Introduction to Workflow Automation with n8n" </h3>
+                    <p>Issued by Datacamp</p>
+                </a>
+            </div>
+        </div>
+        <div class="certificate-card">
+            <a href="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/n8n%20certificate.png?raw=true" target="_blank">
+                <img src="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/n8n%20certificate.png?raw=true" alt="N8N" class="w-full h-auto rounded-md shadow-md">
+                <h3>N8N" </h3>
+                <p>Issued by SkillTechSol</p>
+            </a>
+        </div>
+        </div>
+        <div class="certificate-card">
+            <a href="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Google%20AI%20Essentials.pdf?raw=true" target="_blank">
+                <img src="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Google%20AI%20Essentials.pdf?raw=true" alt="Google AI Essentials" class="w-full h-auto rounded-md shadow-md">
+                <h3>Google AI Essentials" </h3>
+                <p>Issued by Coursera</p>
+            </a>
+        </div>
+
+        <div class="certificate-card">
+            <a href="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Cyber%20Security.png?raw=true" target="_blank">
+                <img src="https://github.com/Alishba-coder-tech/portfolio-assets/blob/main/Cyber%20Security.png?raw=true" alt="Cyber Security Bootcamp Certificate" class="w-full h-auto rounded-md shadow-md">
+                <h3>Cyber Security Bootcamp</h3>
+                <p>Issued by Bahria University, Karachi Campus</p>
+            </a>
+        </div>
+        </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 bg-primary">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-accent">Get in Touch</h2>
+            <div class="contact-card max-w-2xl mx-auto text-center">
+                <p class="text-lg text-text-primary mb-6">
+                    Feel free to reach out to me via email or connect with me on LinkedIn. I'm always open to new opportunities and collaborations.
+                </p>
+                <div class="flex justify-center space-x-6 contact-info">
+                    <a href="mailto:alishbamaqsood75@gmail.com" class="text-text-primary hover:text-accent transition-colors">
+                        <i class="fas fa-envelope text-4xl contact-icon-link"></i>
+                        <p class="mt-2 text-sm">Email</p>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alishba-maqsood-46861031a" target="_blank" class="text-text-primary hover:text-accent transition-colors">
+                        <i class="fab fa-linkedin-in text-4xl contact-icon-link"></i>
+                        <p class="mt-2 text-sm">LinkedIn</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2025 Alishba Maqsood Alam. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Hamburger Menu Logic
+        const hamburgerBtn = document.getElementById('hamburger-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            hamburgerBtn.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+            document.body.classList.toggle('overflow-hidden'); // Prevent scrolling when menu is open
+        }
+
+        hamburgerBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                toggleMenu();
+            });
+        });
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const lightModeIcon = document.querySelector('.light-mode-icon');
+        const darkModeIcon = document.querySelector('.dark-mode-icon');
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+
+            // Toggle icons
+            lightModeIcon.classList.toggle('hidden');
+            darkModeIcon.classList.toggle('hidden');
+        });
+
+        // Particles.js configuration
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#2563eb"
+                },
+                "shape": {
+                    "type": "circle",
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#2563eb",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 6,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 400,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 400,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 200,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
